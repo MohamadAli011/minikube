@@ -51,6 +51,6 @@ spec:
   type: NodePort
   ports:
     - port: 81
-      nodePort: 31000
+      nodePort: 31500
       targetPort: 81
   
