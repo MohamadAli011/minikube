@@ -31,7 +31,7 @@ spec:
       - name: nginx
         image: nginx:latest
         ports:
-        - containerPort: 81
+        - containerPort: 80
         volumeMounts:
             - name: nginx-index-file
               mountPath: /usr/share/nginx/html/
@@ -50,7 +50,7 @@ spec:
     app: nginx
   type: NodePort
   ports:
-    - port: 81
-      nodePort: 31500
-      targetPort: 81
+    - port: 80
+      nodePort: 32000
+      targetPort: 80
   
