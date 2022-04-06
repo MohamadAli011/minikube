@@ -4,12 +4,7 @@ metadata:
   name: index-html-configmap
   namespace: default
 data:
-  index.html: |
-    <html>
-    <h1>Welcome</h1>
-    </br>
-    <h1>Hi! I am Deployed in Mnikube </h1>
-    </html
+  https://raw.githubusercontent.com/MohamadAli011/test1/main/index.html
 ---
 
 apiVersion: apps/v1
