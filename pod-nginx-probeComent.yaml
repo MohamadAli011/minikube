@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-nginx-withProbe
+  labels:
+    label-key1: pod-nginx-probe
+  annotations:
+    annotation-key1: annotation-value
+    annotation-key2: pode ini menggunakan images nginx label anotation dan key
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+      livenessProbe:
+        #untuk pengecekan nginx maka menggunakan httpget
+        httpGet:
+          path: /
+          port: 80
+        #pengecekkan pertama kali ditunggu berpa detik
+        initialDelaySeconds: 3
+        #berapa kali pengecekkan
+        periodSeconds: 5
+        #pengecekkan time out/kembali cek berapa detik lebih dari nilai pengecekkan -
+        #dianggap tidak sehat
+        timeoutSeconds: 1
+        successThreshold: 1
+        #bila pengecekkan lebih dari nilai yang ditentukan maka di restart
+        failureThreshold: 3

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-volume
+  labels:
+    label-key1: volume-nginx
+    label-key1: nodejs-writer
+spec:
+  volumes:
+    - name: nginx-vol
+      emptyDir: {}
+  containers:
+    - name: pod-with-volume
+      image: khannedy/nodejs-writer
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: /app/volume
+          name: nginx-vol
