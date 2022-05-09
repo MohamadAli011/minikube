@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apache
+        image: php:8.0-apache
+        depends_on:
+            - db
+        volumes:
+            - ./surat_pnm:/var/www/html/
+        ports:
+            - "9000:80"
+    db:
+        container_name: coba-mysql
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: spass
+            MYSQL_DATABASE: MYSQL_DATABASE
+#            MYSQL_USER: MYSQL_USER
+#            MYSQL_PASSWORD: MYSQL_PASSWORD
+        ports:
+            - "9906:3306"
+    phpmyadmin:
+        container_name: myadmin
+        image: phpmyadmin:apache
+#        links:
+#          - "coba-mysql:db"
+        ports:
+            - "8000:80"
+        
+
