@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apache
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports:
+            - 8000:80
+    db:
+        container_name: db
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: input_form
+#            MYSQL_USER: root
+#            MYSQL_PASSWORD: root
+        ports:
+            - "9906:3306"
+    phpmyadmin:
+        container_name: myadmin
+        image: phpmyadmin:apache
+        links:
+          - "db:db"
+        ports:
+            - "9000:80"
