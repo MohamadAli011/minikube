@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+    php-apache-environment-tiga:
+        container_name: php-apache
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./surat_pnm/:/var/www/html/
+        ports:
+            - 8000:80
+    
+    php-apache-environment-empat:
+        container_name: php-apache2
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./info/:/var/www/html/
+        ports:
+            - 8080:80
+    db:
+        container_name: db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: pwd
+#            MYSQL_DATABASE: input_form
+#            MYSQL_USER: root
+#            MYSQL_PASSWORD: pwd
+        ports:
+            - "9906:3306"
+    phpmyadmin:
+        container_name: myadmin
+        image: phpmyadmin:5.0.2
+        links:
+          - "db:db"
+        ports:
+            - "9000:80"
